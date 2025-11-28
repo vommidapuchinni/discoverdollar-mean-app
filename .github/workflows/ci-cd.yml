@@ -1,0 +1,35 @@
+name: Build and Push Docker Images
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Log in to Docker Hub
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_PASSWORD }}
+
+      # Backend
+      - name: Build backend image
+        run: docker build -t chinni111/discoverdollar-mean-app-backend:latest ./backend
+
+      - name: Push backend image
+        run: docker push chinni111/discoverdollar-mean-app-backend:latest
+
+      # Frontend
+      - name: Build frontend image
+        run: docker build -t chinni111/discoverdollar-mean-app-frontend:latest ./frontend
+
+      - name: Push frontend image
+        run: docker push chinni111/discoverdollar-mean-app-frontend:latest
+

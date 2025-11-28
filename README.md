@@ -1,27 +1,86 @@
-In this DevOps task, you need to build and deploy a full-stack CRUD application using the MEAN stack (MongoDB, Express, Angular 15, and Node.js). The backend will be developed with Node.js and Express to provide REST APIs, connecting to a MongoDB database. The frontend will be an Angular application utilizing HTTPClient for communication.  
+# Discover Dollar MEAN Stack Application
+Dockerized + GitHub Actions CI/CD
 
-The application will manage a collection of tutorials, where each tutorial includes an ID, title, description, and published status. Users will be able to create, retrieve, update, and delete tutorials. Additionally, a search box will allow users to find tutorials by title.
+## Project Overview
 
-## Project setup
+This is a fully functional CRUD MEAN Stack Application (MongoDB + Express + Angular + Node.js) containerized using Docker and orchestrated using Docker Compose.
+A CI/CD pipeline using GitHub Actions is configured to automatically:
+Build the frontend & backend
+Create Docker images
+Push them to Docker Hub
+Since cloud access was unavailable during execution, the deployment was fully done locally using Docker Compose, and CI/CD pushed images to Docker Hub successfully.
 
-### Node.js Server
+## 🛠 Technologies Used
+Component	Technology
+Frontend	    Angular
+Backend	      Node.js + Express
+Database    	MongoDB
+DevOps	      Docker, Docker Compose
+CI/CD	        GitHub Actions
+Registry    	Docker Hub
 
-cd backend
 
-npm install
+## ⚙️ Setup & Run (Local Machine)
+1. create a repo
+   ![GitHub Repo creation](screenshots/repocreation.PNG)
+2. Copy project files to repo folder: cp -r ../crud-dd-task-mean-app/crud-dd-task-mean-app/* .
+3. Verify files are copied: ls
+4. we see backend and frontend folders
+5. create docker files for both frontend and backend
+6. in root folder create docker compose yaml files
+7. run the command: docker-compose up -d
+8. we see images pulled and containers created
+9. using docker ps we see
+frontend - running
+backend  - running
+mongo    - running
 
-You can update the MongoDB credentials by modifying the `db.config.js` file located in `app/config/`.
+![Locally Created](screenshots/locallycreated.PNG)
 
-Run `node server.js`
+## 🌍 Access Application
+Service	URL
+Frontend	http://localhost
 
-### Angular Client
+Backend API	http://localhost:8080/api
 
-cd frontend
+MongoDB	localhost:27017
 
-npm install
+![Local Dashboard](screenshots/localdashboard.PNG)
 
-Run `ng serve --port 8081`
+![Local output](screenshots/localoutput.PNG)
+## 🧪 Testing Frontend-Backend Integration
 
-You can modify the `src/app/services/tutorial.service.ts` file to adjust how the frontend interacts with the backend.
+Open browser → http://localhost
+Create, update or delete tutorials.
+The backend responds with live data from MongoDB.
+we can see logs for both forntend and backend
 
-Navigate to `http://localhost:8081/`
+## CI/CD Pipeline
+
+This project uses GitHub Actions: .github/workflows/ci-cd.yml
+
+Pipeline Steps:
+Step	Action
+🧱 Build	 →  Build frontend & backend
+🔍 Test  →  	Validate build
+📦 Package	 →  Create Docker images
+📤 Deploy	 →  Push images to Docker Hub
+
+![CI/CD Workflow](screenshots/cicdworkflow.PNG)
+
+after that pull docker images from docker hub and run on we see the containers are running and accessed.
+![Containers Running](screenshots/containersrunningandpulledfrom dockerhub.PNG)
+
+## output
+
+![Backend CI/CD](screenshots/cicdbackend.PNG)
+![Frontend CI/CD](screenshots/througcicdfrontend.PNG)
+
+## Docker Hub Images
+![Docker Hub](screenshots/dockerhub.PNG)
+![Pulled from Docker Hub](screenshots/pulltodockerhub.PNG)
+
+## Cleanup Commands
+Stop and remove containers: docker-compose down
+
+Delete images: docker rmi discoverdollar-mean-app-frontend discoverdollar-mean-app-backend

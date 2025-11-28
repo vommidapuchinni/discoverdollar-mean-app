@@ -83,6 +83,9 @@ after that pull docker images from docker hub and run on we see the containers a
 ## logs
 ![LOGS](screenshots/logs.PNG)
 
+## when code pushing to git automatically workflow running
+![Automatically running](screenshots/pushedautomaticallyrunning.PNG)
+
 ## Cleanup Commands
 Stop and remove containers: docker-compose down
 

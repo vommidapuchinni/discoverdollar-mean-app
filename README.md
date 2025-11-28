@@ -80,6 +80,9 @@ after that pull docker images from docker hub and run on we see the containers a
 ![Docker Hub](screenshots/dockerhub.PNG)
 ![Pulled from Docker Hub](screenshots/pulltodockerhub.PNG)
 
+## logs
+![LOGS](screenshots/logs.PNG)
+
 ## Cleanup Commands
 Stop and remove containers: docker-compose down
 
